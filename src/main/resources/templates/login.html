@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url("https://i.pinimg.com/736x/09/1d/4f/091d4f1bebc76ea61eec0b9d8af26e5f.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh; /* Ensure the body takes up the full height of the viewport */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+}
+
+        h1 {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            width: 300px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #4CAF50;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #3e8e41;
+        }
+    </style>
+</head>
+<body>
+    <h1>Login</h1>
+    <form method="post" action="/login" onsubmit="return redirectToHomePage()">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <br>
+        <label for="password1">Password:</label>
+        <input type="password" id="password1" name="password1" required>
+        <br>
+        <label for="password2">Confirm Password:</label>
+        <input type="password" id="password2" name="password2" required>
+        <br>
+        <input type="submit" value="Login">
+    </form>
+    
+    <p><a href="/register" onclick="redirectToRegisterPage()">New User? Register here</a></p>
+
+    <script>
+        function redirectToHomePage() {
+            // Add any additional form validation logic here
+
+            // Redirect to the home page
+            window.location.href = "/home";
+            
+            // Prevent the form from being submitted
+            return false;
+        }
+
+        function redirectToRegisterPage() {
+            // Redirect to the register page
+            window.location.href = "/register";
+        }
+    </script>
+</body>
+</html>
