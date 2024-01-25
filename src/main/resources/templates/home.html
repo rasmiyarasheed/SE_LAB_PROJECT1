@@ -3,9 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Program Committee Dashboard</title>
+    <style>
+        /* Basic styling for the layout and elements */
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #333;
+            padding: 10px;
+            text-align: center;
+            color: white;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            background-color: #555;
+            margin-right: 10px;
+        }
+
+        nav a:hover {
+            background-color: #777;
+        }
+
+        /* Styling for the submissions list */
+        #submissions-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #submissions-list li {
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+
+        #submissions-list li:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Styling for the submission details section */
+        #submission-details {
+            display: none; /* Initially hidden */
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        /* Add more styles for other elements and visual enhancements */
+    </style>
 </head>
 <body>
-    <h1>Welcome to the Home Page</h1>
+    <header>
+        <h1>Program Committee Dashboard</h1>
+    </header>
+
+    <nav>
+        <a href="#">Search Submissions</a>
+        <a href="#">Messages</a>
+        <a href="#">Settings</a>
+    </nav>
+
+    <main>
+        <section id="submissions-list">
+            <h2>Submissions</h2>
+            <ul>
+                <!-- Submission items will be dynamically added here -->
+            </ul>
+        </section>
+
+        
+    </main>
+
+    <footer>
+        &copy; 2023 NITCONF
+    </footer>
+
+    <script>
+        // Fetch submissions data from a server or local storage
+        fetch('./submissions.json')
+            .then(response => response.json())
+            .then(submissions => {
+                // Create submission items for the list
+                submissions.forEach(submission => {
+                    const submissionItem = document.createElement('li');
+                    submissionItem.innerHTML = `
+                        <h3>${submission.title}</h3>
+                        <p>Authors: ${submission.authors.join(', ')}</p>
+                        <button class="view-details">View Details</button>
+                    `;
+                    document.querySelector('#submissions-list ul').appendChild(submissionItem);
+
+                    // Handle "View Details" button click
+                    submissionItem.querySelector('.view-details').addEventListener('click', () => {
+                        // Show submission details section and populate its content
+                        showSubmissionDetails(submission);
+                    });
+                });
+            });
+
+        function showSubmissionDetails(submission) {
+            // Display submission details in the UI
+            document.getElementById("submission-title").innerText = `Title: ${submission.title}`;
+            document.getElementById("submission-authors").innerText = `Authors: ${submission.authors.join(', ')}`;
+            // Add more details as needed
+
+            // Show the submission details section
+            document.getElementById("submission-details").style.display = "block";
+        }
+    </script>
 </body>
 </html>
