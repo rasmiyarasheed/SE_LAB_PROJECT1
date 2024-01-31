@@ -37,6 +37,10 @@ public class SeLabProjectApplication {
         public String home() {
             return "home"; // Assumes you have a "home.html" file in the templates directory
         }
+        @GetMapping("/reviewers")
+        public String reviewer() {
+            return "reviewers"; // Assumes you have a "home.html" file in the templates directory
+        }
 
         @GetMapping("/register")
         public String showRegistrationForm(Model model) {

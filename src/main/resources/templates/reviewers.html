@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-KyZXEAg3QhqLMpMIHdGQ8tNqQJ2z9qgx4lUAf3/70p5p1K6L6p61Upc9lEmntqXuSgyjgTFPKvmqD2U6u3/eGg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url("https://t3.ftcdn.net/jpg/02/76/99/22/240_F_276992286_z5JBDiYuwb9J83F2qnGaJAEeY4ybjDqY.jpg");
+            height: 100vh;
+            color: #fff;
+        }
+
+        header {
+            background-color: #333;
+            
+            
+            color: white;
+            padding: 10px;
+            text-align: center;
+            z-index: 2;
+            /* Ensure header is above the content */
+        }
+
+        #menu-toggle {
+            display: none;
+        }
+
+        #menu-icon {
+            cursor: pointer;
+            font-size: 24px;
+            margin-left: 20px;
+            z-index: 3;
+            /* Ensure menu icon is above the content */
+        }
+
+        
+       
+         nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            background-color: #555;
+            margin-right: 10px;
+        }
+
+        nav a:hover {
+            background-color: #777;
+        }
+
+        /* Styling for the submissions list */
+        #submissions-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: linear-gradient(90deg, #2c3e50, #34495e);
+            color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 28px;
+            letter-spacing: 1px;
+        }
+
+        .profile-logo {
+            border-radius: 50%;
+            margin-right: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .dashboard-container {
+            text-align: center;
+            padding: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: left;
+            background: black;
+        }
+
+        th {
+            background: white;
+            color: black;
+        }
+
+      
+
+        
+        .hu {
+            text-align: center;
+            margin-left: 40vw;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            /* Align items vertically in the center */
+        }
+
+        .navH {
+            margin: 15px 0px 25px 25px;
+        }
+
+        .cardH {
+            font-size: 19px;
+        }
+
+       
+
+        
+
+
+        @media (min-width: 768px) {
+            .dashboard-links {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+    <title>Our Reviewers</title>
+</head>
+
+<body>
+
+     <header>
+        <div class="header-content">
+            <input type="checkbox" id="menu-toggle">
+            
+
+            <h1 class="hu">Programming Committee</h1>
+            
+        </div>
+
+     </header>
+     <nav>
+       <a th:href="@{/home}"></span> Home</a>
+        <a th:href="@{/reviewers}"></span> Reviewers</a>
+        <a th:href="@{/discussions}"></span> Discussions</a>
+        <a th:href="@{/reviewedpapers}"></span> Reviewed Papers</a>
+        <a th:href="@{/unreviewedpapers}"></span> Unreviewed Papers</a>
+        <a th:href="@{/acceptedpapers}"></span> Accepted Papers</a>
+        <a th:href="@{/rejectedpapers}"></span> Rejected Papers</a>
+        
+        
+
+    </nav>
+    <main>
+        <div class="dashboard-container">
+            <h2 style="color: white;">Reviewers</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Expertise</th>
+                        <th>Mobile</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>jain chacko</td>
+                        <td>jain_chacko@gmail.com</td>
+                        <td>software Engineering</td>
+                        <td>xxxxxxxxxx</td>
+                    </tr>
+                   <tr>
+                        <td>mery shine</td>
+                        <td>mery_shine@gmail.com</td>
+                        <td>nuerology</td>
+                        <td>xxxxxxxxxx</td>
+                    </tr>
+                    <tr>
+                        <td>elice james</td>
+                        <td>elice@gmail.com</td>
+                        <td>physicist</td>
+                        <td>xxxxxxxxxxx</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+
+            
+
+            
+            
+        </div>
+    </main>
+
+    </body>
+
+</html>
