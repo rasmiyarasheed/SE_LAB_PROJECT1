@@ -26,7 +26,7 @@ public class SeLabProjectApplication {
         public String login(@RequestParam String username, @RequestParam String password, Model model) {
             // Replace with actual authentication logic
             if ("admin".equals(username) && "password".equals(password)) {
-                return "redirect:/home"; // Redirect to "home.html" after successful login
+                return "redirect:/dashboard"; // Redirect to "home.html" after successful login
             } else {
                 model.addAttribute("error", "Invalid username or password");
                 return "login";
@@ -40,6 +40,14 @@ public class SeLabProjectApplication {
         @GetMapping("/reviewers")
         public String reviewer() {
             return "reviewers"; // Assumes you have a "home.html" file in the templates directory
+        }
+        @GetMapping("/accepted")
+        public String accepted() {
+            return "accepted"; // Assumes you have a "home.html" file in the templates directory
+        }
+        @GetMapping("/dashboard")
+        public String dashboard() {
+            return "dashboard"; // Assumes you have a "home.html" file in the templates directory
         }
 
         @GetMapping("/register")

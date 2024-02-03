@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Program Committee Dashboard</title>
     <style>
-        /* Basic styling for the layout and elements */
+        
         body {
             font-family: sans-serif;
             margin: 0;
@@ -54,7 +54,7 @@
             background-color: #777;
         }
 
-        /* Styling for the submissions list */
+        
         #submissions-list ul {
             list-style: none;
             padding: 0;
@@ -66,23 +66,23 @@
             padding: 10px;
             background-color: #fff;
             cursor: pointer;
-            transition: background-color 0.3s ease; /* Smooth transition */
+           
         }
 
         #submissions-list li:hover {
             background-color: #f0f0f0;
         }
 
-        /* Styling for the submission details section */
+        
         #submission-details {
-            display: none; /* Initially hidden */
+            
             margin-top: 20px;
             border: 1px solid #ccc;
             padding: 20px;
             background-color: #f0f0f0;
         }
 
-        /* Add more styles for other elements and visual enhancements */
+        
     </style>
 </head>
 <body>
@@ -92,20 +92,20 @@
 
     <nav>
         
-        <a th:href="@{/home}"></span> Home</a>
-        <a th:href="@{/reviewers}"></span>Our  Reviewers</a>
-        <a th:href="@{/discussions}"></span> Discussions</a>
-        <a th:href="@{/reviewedpapers}"></span> Reviewed Papers</a>
-        <a th:href="@{/unreviewedpapers}"></span> Unreviewed Papers</a>
-        <a th:href="@{/acceptedpapers}"></span> Accepted Papers</a>
-        <a th:href="@{/rejectedpapers}"></span> Rejected Papers</a>
+        <a href="/dashboard"></span> Home</a>
+        <a href="/reviewers"></span>Our  Reviewers</a>
+        
+        <a href="/home"></span> Reviewed Papers</a>
+        <a href="/unreviewedpapers"></span> Unreviewed Papers</a>
+        <a href="/accepted"></span> Accepted Papers</a>
+        <a href="/rejectedpapers"></span> Rejected Papers</a>
     </nav>
 
     <main>
         <section id="submissions-list">
-            <h2>Submissions</h2>
+            <h2>Reviewed Papers</h2>
             <ul>
-                <!-- Submission items will be dynamically added here -->
+                
             </ul>
         </section>
 
