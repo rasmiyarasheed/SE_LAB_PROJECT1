@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assign Reviewer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+    }
+
+    .container {
+      width: 80%;
+      margin: 20px auto;
+      border: 5px solid #8B4513;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    h2 {
+      color: #8B4513;
+    }
+
+    .section {
+      margin-top: 20px;
+    }
+
+    .button {
+      background-color: #8B4513;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .paper-details {
+      margin-bottom: 10px;
+    }
+
+    .dropdown {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Assign Reviewer</h2>
+ 
+    <div class="section">
+        <form action="/papers/save" method ="POST">
+            <div class="paper-details">
+                <p>Paper ID:1 connect with link</p>
+                <p>Author: Author 1</p>
+                <label for="reviewer1" class="dropdown">Select Reviewer:</label>
+                <select id="reviewer1">
+                <option value="sonu">Sonu</option>
+                <option value="rahsmiya">Rahsmiya</option>
+                <option value="ashwariya">Ashwariya</option>
+                </select>
+                <button type="submit" class="button" onclick="assignReviewer(1)">Assign Reviewer</button>
+                <button type="date" class="button" onclick="setDeadline(1)">Set Deadline</button>             
+            </div>
+        </form>
+        <hr>
+      
+        <form action="/papers/save" method ="POST">
+          <div class="paper-details">
+              <p>Paper ID: 2 contect with link</p>
+              <p>Author: Author 1</p>
+              <label for="reviewer1" class="dropdown">Select Reviewer:</label>
+              <select id="reviewer1">
+              <option value="sonu">Sonu</option>
+              <option value="rahsmiya">Rahsmiya</option>
+              <option value="ashwariya">Ashwariya</option>
+              </select>
+              <button type="submit" class="button" onclick="assignReviewer(1)">Assign Reviewer</button>
+              <button type="date" class="button" onclick="setDeadline(1)">Set Deadline</button>             
+          </div>
+      </form>
+      <hr>
+      <form action="/papers/save" method ="POST">
+        <div class="paper-details">
+            <p>Paper ID: 3 connect with link</p>
+            <p>Author: Author 1</p>
+            <label for="reviewer1" class="dropdown">Select Reviewer:</label>
+            <select id="reviewer1">
+            <option value="sonu">Sonu</option>
+            <option value="rahsmiya">Rahsmiya</option>
+            <option value="ashwariya">Ashwariya</option>
+            </select>
+            <button type="submit" class="button" onclick="assignReviewer(1)">Assign Reviewer</button>
+            <button type="date" class="button" onclick="setDeadline(1)">Set Deadline</button>             
+        </div>
+    </form>
+    <hr>
+    <form action="/papers/save" method ="POST">
+      <div class="paper-details">
+          <p>Paper ID: 4 connect with link</p>
+          <p>Author: Author 1</p>
+          <label for="reviewer1" class="dropdown">Select Reviewer:</label>
+          <select id="reviewer1">
+          <option value="sonu">Sonu</option>
+          <option value="rahsmiya">Rahsmiya</option>
+          <option value="ashwariya">Ashwariya</option>
+          </select>
+          <button type="submit" class="button" onclick="assignReviewer(1)">Assign Reviewer</button>
+          <button type="date" class="button" onclick="setDeadline(1)">Set Deadline</button>             
+      </div>
+  </form>
+  <hr>
+  <form action="/papers/save" method ="POST">
+    <div class="paper-details">
+        <p>Paper ID: 5 cnnect with link</p>
+        <p>Author: Author 1</p>
+        <label for="reviewer1" class="dropdown">Select Reviewer:</label>
+        <select id="reviewer1">
+        <option value="sonu">Sonu</option>
+        <option value="rahsmiya">Rahsmiya</option>
+        <option value="ashwariya">Ashwariya</option>
+        </select>
+        <button type="submit" class="button" onclick="assignReviewer(1)">Assign Reviewer</button>
+        <button type="date" class="button" onclick="setDeadline(1)">Set Deadline</button>             
+    </div>
+</form>
+<hr>
+<form action="/papers/save" method ="POST">
+  <div class="paper-details">
+      <p>Paper ID: 6 connect with link</p>
+      <p>Author: Author 1</p>
+      <label for="reviewer1" class="dropdown">Select Reviewer:</label>
+      <select id="reviewer1">
+      <option value="sonu">Sonu</option>
+      <option value="rahsmiya">Rahsmiya</option>
+      <option value="ashwariya">Ashwariya</option>
+      </select>
+      <button type="submit" class="button" onclick="assignReviewer(1)">Assign Reviewer</button>
+      <button type="date" class="button" onclick="setDeadline(1)">Set Deadline</button>             
+  </div>
+</form>
+<hr>
+    </body>
+
+      <!-- Repeat similar structure for other paper details sections -->
+    </div>
+  </div>
+
+  <script>
+    function assignReviewer(paperId) {
+      var selectedReviewer = document.getElementById('reviewer' + paperId).value;
+      alert("Reviewer " + selectedReviewer + " assigned for Paper ID: " + paperId);
+      // Implement logic to store the selected reviewer for the specified paperId
+    }
+
+    function setDeadline(paperId) {
+      var day = prompt("Enter day for deadline (1-31):");
+      var month = prompt("Enter month for deadline (1-12):");
+      var year = prompt("Enter year for deadline:");
+
+      var deadline = new Date(year, month - 1, day); // Note: Months are 0-indexed in JavaScript Dates
+
+      if (isNaN(deadline.getTime())) {
+        alert("Invalid date. Please enter a valid date for the deadline.");
+      } else {
+        alert("Deadline set for Paper ID: " + paperId + " - " + deadline.toDateString());
+        // Implement logic to store the deadline for the specified paperId
+      }
+    }
+  </script>
+</body>
+</html>
