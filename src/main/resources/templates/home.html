@@ -91,9 +91,14 @@
     </header>
 
     <nav>
-        <a href="/reviewers">our Reviewers</a>
-        <a href="#">Messages</a>
-        <a href="#">Settings</a>
+        
+        <a th:href="@{/home}"></span> Home</a>
+        <a th:href="@{/reviewers}"></span>Our  Reviewers</a>
+        <a th:href="@{/discussions}"></span> Discussions</a>
+        <a th:href="@{/reviewedpapers}"></span> Reviewed Papers</a>
+        <a th:href="@{/unreviewedpapers}"></span> Unreviewed Papers</a>
+        <a th:href="@{/acceptedpapers}"></span> Accepted Papers</a>
+        <a th:href="@{/rejectedpapers}"></span> Rejected Papers</a>
     </nav>
 
     <main>
