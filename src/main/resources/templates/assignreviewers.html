@@ -77,6 +77,27 @@
             padding: 5px;
             margin-bottom: 10px;
         }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            background-color: #555;
+            margin-right: 10px;
+        }
+
+        nav a:hover {
+            background-color: #777;
+        }
+        
+
     </style>
 </head>
 
@@ -84,6 +105,16 @@
     <div class="container">
         <h2>Assign Reviewer</h2>
         <div class="section" id="papersSection">
+
+            <nav>
+                <a href="/dashboard">Home</a>
+                <a href="/reviewers">Reviewers</a>
+                <a href="/home">Reviewed Papers</a>
+                <a href="/assignreviewers">Unreviewed Papers</a>
+                <a href="/accepted">Accepted Papers</a>
+                <a href="/rejectedpapers">Rejected Papers</a>
+            </nav>
+
             <!-- Paper sections will be dynamically added here -->
         </div>
     </div>
