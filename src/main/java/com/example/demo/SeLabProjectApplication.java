@@ -53,6 +53,10 @@ public class SeLabProjectApplication {
         public String assignreviewers() {
             return "assignreviewers"; // Assumes you have a "home.html" file in the templates directory
         }
+        @GetMapping("/rejectedpapers")
+        public String rejectedpapers() {
+            return "rejectedpapers"; // Assumes you have a "home.html" file in the templates directory
+        }
 
         @GetMapping("/register")
         public String showRegistrationForm(Model model) {
