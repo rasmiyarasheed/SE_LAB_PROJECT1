@@ -49,6 +49,10 @@ public class SeLabProjectApplication {
         public String dashboard() {
             return "dashboard"; // Assumes you have a "home.html" file in the templates directory
         }
+        @GetMapping("/assignreviewers")
+        public String assignreviewers() {
+            return "assignreviewers"; // Assumes you have a "home.html" file in the templates directory
+        }
 
         @GetMapping("/register")
         public String showRegistrationForm(Model model) {
