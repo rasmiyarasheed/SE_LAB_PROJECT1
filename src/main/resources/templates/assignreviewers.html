@@ -7,49 +7,48 @@
     <title>Assign Reviewer</title>
     <style>
         body {
-      font-family: Arial, sans-serif;
-      background-color: white;
-      margin: 0;
-      background-image: url("https://t3.ftcdn.net/jpg/02/76/99/22/240_F_276992286_z5JBDiYuwb9J83F2qnGaJAEeY4ybjDqY.jpg");
-    }
+            font-family: Arial, sans-serif;
+            background-color: white;
+            margin: 0;
+            background-image: url("https://t3.ftcdn.net/jpg/02/76/99/22/240_F_276992286_z5JBDiYuwb9J83F2qnGaJAEeY4ybjDqY.jpg");
+        }
 
-    .container {
-      width: 80%;
-      margin: 20px auto;
-      border: 5px solid grey;
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 10px;
-    }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            border: 5px solid grey;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+        }
 
-    h2 {
-      color: grey;
-      text-align: center;
-    }
+        h2 {
+            color: grey;
+            text-align: center;
+        }
 
-    .section {
-      margin-top: 20px;
-    }
+        .section {
+            margin-top: 20px;
+        }
 
-    .button {
-      background-color:grey;
-      color: #fff;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+        .button {
+            background-color: grey;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
-    .paper-details {
-      margin-bottom: 10px;
-    }
+        .paper-details {
+            margin-bottom: 10px;
+        }
 
-    .dropdown {
-      width: 100%;
-      padding: 5px;
-      margin-bottom: 10px;
-    }
-
+        .dropdown {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 
@@ -82,10 +81,10 @@
                     const paperIdP = document.createElement('p');
                     paperIdP.textContent = `Paper ID: ${index + 1}`;
                     paperDetailsDiv.appendChild(paperIdP);
-                    
+
                     const titleP = document.createElement('p');
-            		titleP.textContent = `Title: ${paper.title}`;
-            		paperDetailsDiv.appendChild(titleP);
+                    titleP.textContent = `Title: ${paper.title}`;
+                    paperDetailsDiv.appendChild(titleP);
 
                     const authorP = document.createElement('p');
                     authorP.textContent = `Authors: ${paper.authors.join(', ')}`;
@@ -123,18 +122,44 @@
                     assignButton.type = 'submit';
                     assignButton.className = 'button';
                     assignButton.textContent = 'Assign Reviewer';
-                    assignButton.onclick = () => assignReviewer(index + 1);
+                    assignButton.onclick = () => {
+                        const selectedReviewer = document.getElementById(`reviewer${index + 1}`).value;
+                        saveResponse({
+                            paperId: index + 1,
+                            action: 'Assign Reviewer',
+                            reviewer: selectedReviewer
+                        });
+                        alert(`Reviewer ${selectedReviewer} assigned for Paper ID: ${index + 1}`);
+                        // Implement additional logic if needed
+                    };
                     paperDetailsDiv.appendChild(assignButton);
-                    
+
                     const buttonSpacer = document.createElement('span');
-					buttonSpacer.style.marginRight = '10px'; // Adjust the margin as needed
-					paperDetailsDiv.appendChild(buttonSpacer);
+                    buttonSpacer.style.marginRight = '10px';
+                    paperDetailsDiv.appendChild(buttonSpacer);
 
                     const deadlineButton = document.createElement('button');
-                    deadlineButton.type = 'date';
+                    deadlineButton.type = 'button';
                     deadlineButton.className = 'button';
                     deadlineButton.textContent = 'Set Deadline';
-                    deadlineButton.onclick = () => setDeadline(index + 1);
+                    deadlineButton.onclick = () => {
+                        const day = prompt('Enter day for deadline (1-31):');
+                        const month = prompt('Enter month for deadline (1-12):');
+                        const year = prompt('Enter year for deadline:');
+                        const deadline = new Date(year, month - 1, day);
+
+                        if (!isNaN(deadline.getTime())) {
+                            saveResponse({
+                                paperId: index + 1,
+                                action: 'Set Deadline',
+                                deadline: deadline.toDateString()
+                            });
+                            alert(`Deadline set for Paper ID: ${index + 1} - ${deadline.toDateString()}`);
+                            // Implement additional logic if needed
+                        } else {
+                            alert('Invalid date. Please enter a valid date for the deadline.');
+                        }
+                    };
                     paperDetailsDiv.appendChild(deadlineButton);
 
                     // Append the paper details div to the form
@@ -146,25 +171,17 @@
             })
             .catch(error => console.error('Error fetching paper details:', error));
 
-        function assignReviewer(paperId) {
-            var selectedReviewer = document.getElementById(`reviewer${paperId}`).value;
-            alert(`Reviewer ${selectedReviewer} assigned for Paper ID: ${paperId}`);
-            // Implement logic to store the selected reviewer for the specified paperId
-        }
+        function saveResponse(response) {
+            // Retrieve existing responses from localStorage
+            const savedResponses = JSON.parse(localStorage.getItem('savedResponses')) || [];
 
-        function setDeadline(paperId) {
-            var day = prompt('Enter day for deadline (1-31):');
-            var month = prompt('Enter month for deadline (1-12):');
-            var year = prompt('Enter year for deadline:');
+            // Add the new response to the array
+            savedResponses.push(response);
 
-            var deadline = new Date(year, month - 1, day);
+            // Save the updated array back to localStorage
+            localStorage.setItem('savedResponses', JSON.stringify(savedResponses));
 
-            if (isNaN(deadline.getTime())) {
-                alert('Invalid date. Please enter a valid date for the deadline.');
-            } else {
-                alert(`Deadline set for Paper ID: ${paperId} - ${deadline.toDateString()}`);
-                // Implement logic to store the deadline for the specified paperId
-            }
+            alert('Response saved successfully.');
         }
     </script>
 </body>
