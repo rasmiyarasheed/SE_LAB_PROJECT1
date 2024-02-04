@@ -3,10 +3,9 @@
 
 <head>
     <meta charset="UTF-8" />
-    
-<style>
-        
-        body {
+
+    <style>
+         body {
             font-family: sans-serif;
             margin: 0;
             padding: 20px;
@@ -55,8 +54,10 @@
         nav a:hover {
             background-color: #777;
         }
+
         
-       
+
+
     </style>
 
     <title>Our Reviewers</title>
@@ -64,56 +65,59 @@
 
 <body>
 
-     <header>
+    <header>
         <div class="custom-header">
             <h1 class="custom-title">Program committee</h1>
         </div>
-     </header>
-     <nav>
-
-       <a href="/dashboard">Home</a>
+    </header>
+    <nav>
+        <a href="/dashboard">Home</a>
         <a href="/reviewers">Reviewers</a>
         <a href="/home">Reviewed Papers</a>
         <a href="/assignreviewers">Unreviewed Papers</a>
         <a href="/accepted">Accepted Papers</a>
         <a href="/rejectedpapers">Rejected Papers</a>
-
     </nav>
     <main>
-    <h2>Our Reviewers</h2>
+        <h2>Our Reviewers</h2>
 
-    <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
-        <!-- Reviewer 1 -->
-        <div style="width: 300px; padding: 20px; margin: 10px; background-color: #555; color: white; text-align: center; border-radius: 10px;">
-            <h3>Reviewer 1</h3>
-            <p>Name: John Doe</p>
-            <p>Field: Computer Science</p>
-            <p>Contact: 123-456-7890</p>
-            <p>Email: john.doe@example.com</p>
+        <div id="reviewers-container" style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+            <!-- Reviewer details will be dynamically added here -->
         </div>
 
-        <!-- Reviewer 2 -->
-        <div style="width: 300px; padding: 20px; margin: 10px; background-color: #555; color: white; text-align: center; border-radius: 10px;">
-            <h3>Reviewer 2</h3>
-            <p>Name: Jane Smith</p>
-            <p>Field: Electrical Engineering</p>
-            <p>Contact: 987-654-3210</p>
-            <p>Email: jane.smith@example.com</p>
-        </div>
-        <div style="width: 300px; padding: 20px; margin: 10px; background-color: #555; color: white; text-align: center; border-radius: 10px;">
-            <h3>Reviewer 3</h3>
-            <p>Name: merry nisa</p>
-            <p>Field: mechanical Engineering</p>
-            <p>Contact: 987-654-3210</p>
-            <p>Email: merrynisa@example.com</p>
-        </div>
+        <script>
+            // Fetch data from reviewers.json using Fetch API
+            fetch('reviewers.json')
+                .then(response => response.json())
+                .then(reviewers => {
+                    const reviewersContainer = document.getElementById('reviewers-container');
 
-        <!-- Add more reviewer boxes as needed -->
+                    // Iterate through each reviewer and create HTML elements dynamically
+                    reviewers.forEach(reviewer => {
+                        const reviewerDiv = document.createElement('div');
+                        reviewerDiv.style.width = '300px';
+                        reviewerDiv.style.padding = '20px';
+                        reviewerDiv.style.margin = '10px';
+                        reviewerDiv.style.backgroundColor = '#555';
+                        reviewerDiv.style.color = 'white';
+                        reviewerDiv.style.textAlign = 'center';
+                        reviewerDiv.style.borderRadius = '10px';
 
-    </div>
-</main>
+                        reviewerDiv.innerHTML = `
+                            <h3>${reviewer.Name}</h3>
+                            <p>Name: ${reviewer.Name}</p>
+                            <p>Field: ${reviewer['Field of Expertise']}</p>
+                            <p>Contact: ${reviewer.Contact}</p>
+                            <p>Email: ${reviewer.Email}</p>
+                        `;
 
+                        reviewersContainer.appendChild(reviewerDiv);
+                    });
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        </script>
+    </main>
 
-    </body>
+</body>
 
 </html>

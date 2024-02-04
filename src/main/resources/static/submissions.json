@@ -1,15 +1,26 @@
 [
     {
-        "title": "Research Paper on Artificial Intelligence",
-        "authors": ["John Doe", "Jane Smith"]
+        "title": "Exploring Neural Networks for Image Recognition",
+        "authors": ["Emily White", "Frank Miller"]
     },
     {
-        "title": "Advancements in Machine Learning Algorithms",
-        "authors": ["Alice Johnson", "Bob Brown"]
+        "title": "Robotics and Automation in Industry 4.0",
+        "authors": ["Grace Taylor", "Henry Wilson"]
     },
     {
-        "title": "Blockchain Technology and its Applications",
-        "authors": ["Charlie Williams", "David Davis"]
+        "title": "Ethical Considerations in Artificial Intelligence Research",
+        "authors": ["Ivy Green", "Jack Anderson"]
+    },
+    {
+        "title": "Data Privacy in the Age of Big Data",
+        "authors": ["Karen Moore", "Liam Johnson"]
+    },
+    {
+        "title": "Quantum Computing: A Paradigm Shift in Information Processing",
+        "authors": ["Mike Robinson", "Natalie Harris"]
+    },
+    {
+        "title": "The Role of Explainable AI in Decision Support Systems",
+        "authors": ["Olivia Davis", "Patrick White"]
     }
-    
 ]

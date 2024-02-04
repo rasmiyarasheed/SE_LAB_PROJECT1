@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Assign Reviewer</title>
-  <style>
-    body {
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assign Reviewer</title>
+    <style>
+        body {
       font-family: Arial, sans-serif;
       background-color: white;
       margin: 0;
@@ -48,132 +49,124 @@
       padding: 5px;
       margin-bottom: 10px;
     }
-  </style>
+
+    </style>
 </head>
+
 <body>
-  <div class="container">
-	  
-    <h2>Assign Reviewer</h2>
- 
-    <div class="section">
-        <form action="/assignreviewers" method ="POST">
-            <div class="paper-details">
-                <p>Paper ID:1 connect with link</p>
-                <p>Author: Author 1</p>
-                <label for="reviewer1" class="dropdown">Select Reviewer:</label>
-                <select id="reviewer1">
-                <option value="sonu">Sonu</option>
-                <option value="rahsmiya">Rahsmiya</option>
-                <option value="ashwariya">Ashwariya</option>
-                </select>
-                <button type="submit" class="button" onclick="assignReviewer(1)">Assign Reviewer</button>
-                <button type="date" class="button" onclick="setDeadline(1)">Set Deadline</button>             
-            </div>
-        </form>
-        <hr>
-      
-        <form action="/assignreviewers" method ="POST">
-          <div class="paper-details">
-              <p>Paper ID: 2 contect with link</p>
-              <p>Author: Author 1</p>
-              <label for="reviewer1" class="dropdown">Select Reviewer:</label>
-              <select id="reviewer1">
-              <option value="sonu">Sonu</option>
-              <option value="rahsmiya">Rahsmiya</option>
-              <option value="ashwariya">Ashwariya</option>
-              </select>
-              <button type="submit" class="button" onclick="assignReviewer(1)">Assign Reviewer</button>
-              <button type="date" class="button" onclick="setDeadline(1)">Set Deadline</button>             
-          </div>
-      </form>
-      <hr>
-      <form action="/assignreviewers" method ="POST">
-        <div class="paper-details">
-            <p>Paper ID: 3 connect with link</p>
-            <p>Author: Author 1</p>
-            <label for="reviewer1" class="dropdown">Select Reviewer:</label>
-            <select id="reviewer1">
-            <option value="sonu">Sonu</option>
-            <option value="rahsmiya">Rahsmiya</option>
-            <option value="ashwariya">Ashwariya</option>
-            </select>
-            <button type="submit" class="button" onclick="assignReviewer(1)">Assign Reviewer</button>
-            <button type="date" class="button" onclick="setDeadline(1)">Set Deadline</button>             
+    <div class="container">
+        <h2>Assign Reviewer</h2>
+        <div class="section" id="papersSection">
+            <!-- Paper sections will be dynamically added here -->
         </div>
-    </form>
-    <hr>
-    <form action="/assignreviewers" method ="POST">
-      <div class="paper-details">
-          <p>Paper ID: 4 connect with link</p>
-          <p>Author: Author 1</p>
-          <label for="reviewer1" class="dropdown">Select Reviewer:</label>
-          <select id="reviewer1">
-          <option value="sonu">Sonu</option>
-          <option value="rahsmiya">Rahsmiya</option>
-          <option value="ashwariya">Ashwariya</option>
-          </select>
-          <button type="submit" class="button" onclick="assignReviewer(1)">Assign Reviewer</button>
-          <button type="date" class="button" onclick="setDeadline(1)">Set Deadline</button>             
-      </div>
-  </form>
-  <hr>
-  <form action="/assignreviewers" method ="POST">
-    <div class="paper-details">
-        <p>Paper ID: 5 cnnect with link</p>
-        <p>Author: Author 1</p>
-        <label for="reviewer1" class="dropdown">Select Reviewer:</label>
-        <select id="reviewer1">
-        <option value="sonu">Sonu</option>
-        <option value="rahsmiya">Rahsmiya</option>
-        <option value="ashwariya">Ashwariya</option>
-        </select>
-        <button type="submit" class="button" onclick="assignReviewer(1)">Assign Reviewer</button>
-        <button type="date" class="button" onclick="setDeadline(1)">Set Deadline</button>             
     </div>
-</form>
-<hr>
-<form action="/assignreviewers" method ="POST">
-  <div class="paper-details">
-      <p>Paper ID: 6 connect with link</p>
-      <p>Author: Author 1</p>
-      <label for="reviewer1" class="dropdown">Select Reviewer:</label>
-      <select id="reviewer1">
-      <option value="sonu">Sonu</option>
-      <option value="rahsmiya">Rahsmiya</option>
-      <option value="ashwariya">Ashwariya</option>
-      </select>
-      <button type="submit" class="button" onclick="assignReviewer(1)">Assign Reviewer</button>
-      <button type="date" class="button" onclick="setDeadline(1)">Set Deadline</button>             
-  </div>
-</form>
-<hr>
-    </body>
 
-      <!-- Repeat similar structure for other paper details sections -->
-    </div>
-  </div>
+    <script>
+        // Fetch paper details from submissions.json
+        fetch('submissions.json')
+            .then(response => response.json())
+            .then(papers => {
+                const papersSection = document.getElementById('papersSection');
 
-  <script>
-    function assignReviewer(paperId) {
-      var selectedReviewer = document.getElementById('reviewer' + paperId).value;
-      alert("Reviewer " + selectedReviewer + " assigned for Paper ID: " + paperId);
-      // Implement logic to store the selected reviewer for the specified paperId
-    }
+                papers.forEach((paper, index) => {
+                    // Create a form for each paper
+                    const form = document.createElement('form');
+                    form.action = '/assignreviewers';
+                    form.method = 'POST';
 
-    function setDeadline(paperId) {
-      var day = prompt("Enter day for deadline (1-31):");
-      var month = prompt("Enter month for deadline (1-12):");
-      var year = prompt("Enter year for deadline:");
+                    // Create a div for paper details
+                    const paperDetailsDiv = document.createElement('div');
+                    paperDetailsDiv.className = 'paper-details';
 
-      var deadline = new Date(year, month - 1, day); // Note: Months are 0-indexed in JavaScript Dates
+                    // Display Paper ID and Author details
+                    const paperIdP = document.createElement('p');
+                    paperIdP.textContent = `Paper ID: ${index + 1}`;
+                    paperDetailsDiv.appendChild(paperIdP);
+                    
+                    const titleP = document.createElement('p');
+            		titleP.textContent = `Title: ${paper.title}`;
+            		paperDetailsDiv.appendChild(titleP);
 
-      if (isNaN(deadline.getTime())) {
-        alert("Invalid date. Please enter a valid date for the deadline.");
-      } else {
-        alert("Deadline set for Paper ID: " + paperId + " - " + deadline.toDateString());
-        // Implement logic to store the deadline for the specified paperId
-      }
-    }
-  </script>
+                    const authorP = document.createElement('p');
+                    authorP.textContent = `Authors: ${paper.authors.join(', ')}`;
+                    paperDetailsDiv.appendChild(authorP);
+
+                    // Create a label and dropdown for selecting a reviewer
+                    const label = document.createElement('label');
+                    label.for = `reviewer${index + 1}`;
+                    label.className = 'dropdown';
+                    label.textContent = 'Select Reviewer:';
+                    paperDetailsDiv.appendChild(label);
+
+                    const dropdown = document.createElement('select');
+                    dropdown.id = `reviewer${index + 1}`;
+                    dropdown.className = 'dropdown';
+                    // Reviewer options will be dynamically added here
+
+                    // Fetch reviewer names from reviewers.json
+                    fetch('reviewers.json')
+                        .then(response => response.json())
+                        .then(reviewers => {
+                            reviewers.forEach(reviewer => {
+                                const option = document.createElement('option');
+                                option.value = reviewer.Name;
+                                option.textContent = reviewer.Name;
+                                dropdown.appendChild(option.cloneNode(true));
+                            });
+                        })
+                        .catch(error => console.error('Error fetching reviewer names:', error));
+
+                    paperDetailsDiv.appendChild(dropdown);
+
+                    // Create buttons for assigning a reviewer and setting a deadline
+                    const assignButton = document.createElement('button');
+                    assignButton.type = 'submit';
+                    assignButton.className = 'button';
+                    assignButton.textContent = 'Assign Reviewer';
+                    assignButton.onclick = () => assignReviewer(index + 1);
+                    paperDetailsDiv.appendChild(assignButton);
+                    
+                    const buttonSpacer = document.createElement('span');
+					buttonSpacer.style.marginRight = '10px'; // Adjust the margin as needed
+					paperDetailsDiv.appendChild(buttonSpacer);
+
+                    const deadlineButton = document.createElement('button');
+                    deadlineButton.type = 'date';
+                    deadlineButton.className = 'button';
+                    deadlineButton.textContent = 'Set Deadline';
+                    deadlineButton.onclick = () => setDeadline(index + 1);
+                    paperDetailsDiv.appendChild(deadlineButton);
+
+                    // Append the paper details div to the form
+                    form.appendChild(paperDetailsDiv);
+
+                    // Append the form to the papersSection
+                    papersSection.appendChild(form);
+                });
+            })
+            .catch(error => console.error('Error fetching paper details:', error));
+
+        function assignReviewer(paperId) {
+            var selectedReviewer = document.getElementById(`reviewer${paperId}`).value;
+            alert(`Reviewer ${selectedReviewer} assigned for Paper ID: ${paperId}`);
+            // Implement logic to store the selected reviewer for the specified paperId
+        }
+
+        function setDeadline(paperId) {
+            var day = prompt('Enter day for deadline (1-31):');
+            var month = prompt('Enter month for deadline (1-12):');
+            var year = prompt('Enter year for deadline:');
+
+            var deadline = new Date(year, month - 1, day);
+
+            if (isNaN(deadline.getTime())) {
+                alert('Invalid date. Please enter a valid date for the deadline.');
+            } else {
+                alert(`Deadline set for Paper ID: ${paperId} - ${deadline.toDateString()}`);
+                // Implement logic to store the deadline for the specified paperId
+            }
+        }
+    </script>
 </body>
+
 </html>
