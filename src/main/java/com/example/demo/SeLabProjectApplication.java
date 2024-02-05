@@ -89,6 +89,11 @@ public class SeLabProjectApplication {
             return "responses"; // Assumes you have a "home.html" file in the templates directory
         }
         
+        @GetMapping("/decisions")
+        public String decisions() {
+            return "decisions"; // Assumes you have a "home.html" file in the templates directory
+        }
+        
         @GetMapping("/dashboard")
         public String dashboard() {
             return "dashboard"; // Assumes you have a "home.html" file in the templates directory

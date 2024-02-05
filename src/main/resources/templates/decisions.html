@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decisions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            margin: 0;
+            background-image: url("https://t3.ftcdn.net/jpg/02/76/99/22/240_F_276992286_z5JBDiYuwb9J83F2qnGaJAEeY4ybjDqY.jpg");
+            color: white;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            border: 5px solid grey;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        h1, h2 {
+            color: grey;
+            text-align: center;
+        }
+
+        #decisions-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            background-color: #555;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .back-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #555;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background-color: #777;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            background-color: #555;
+            margin-right: 10px;
+        }
+
+        nav a:hover {
+            background-color: #777;
+        }
+    </style>
+</head>
+<body>
+    <h1>Saved Decisions</h1>
+
+    <ul id="decisions-list"></ul>
+
+    <script>
+        const decisionsList = document.getElementById("decisions-list");
+
+        for (let i = 0; i < localStorage.length; i++) {
+            const title = localStorage.key(i);
+            const decision = localStorage.getItem(title);
+
+            // Check if the decision is accepted or rejected
+            if (decision === 'accept' || decision === 'reject') {
+                const decisionItem = document.createElement('li');
+                decisionItem.textContent = `${title}: ${decision}`;
+                decisionsList.appendChild(decisionItem);
+            }
+        }
+    </script>
+
+    <button class="back-button" onclick="goBack()">Back</button>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>
