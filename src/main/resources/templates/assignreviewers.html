@@ -40,11 +40,11 @@
             cursor: pointer;
         }
 
-<<<<<<< HEAD
+
         .paper-details {
             margin-bottom: 10px;
         }
-=======
+
     .paper-details {
       margin-bottom: 10px;
     }
@@ -70,7 +70,7 @@
     background-color: #777;
 }
     
->>>>>>> origin/main
+
 
         .dropdown {
             width: 100%;
@@ -147,7 +147,7 @@
 
                     // Create buttons for assigning a reviewer and setting a deadline
                     const assignButton = document.createElement('button');
-                    assignButton.type = 'submit';
+                    assignButton.type = 'button';
                     assignButton.className = 'button';
                     assignButton.textContent = 'Assign Reviewer';
                     assignButton.onclick = () => {
@@ -211,7 +211,12 @@
 
             alert('Response saved successfully.');
         }
+        function navigateToResponsesPage() {
+        window.location.href = "responses";
+         }
+         
     </script>
+    <button onclick="navigateToResponsesPage()">View Responses</button>
     
     <button id="back-button">Back</button>
     

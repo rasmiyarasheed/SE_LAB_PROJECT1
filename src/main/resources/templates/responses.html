@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responses</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            margin: 0;
+            background-image: url("https://t3.ftcdn.net/jpg/02/76/99/22/240_F_276992286_z5JBDiYuwb9J83F2qnGaJAEeY4ybjDqY.jpg");
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            border: 5px solid grey;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        h2 {
+            color: grey;
+            text-align: center;
+        }
+
+        .response-details {
+            margin-bottom: 10px;
+        }
+
+        .back-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px;
+            background-color: #555;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background-color: #777;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Responses</h2>
+        <div class="response-details" id="responsesList">
+            <!-- Responses will be dynamically added here -->
+        </div>
+    </div>
+
+    <button class="back-button" onclick="navigateBack()">Back</button>
+
+    <script>
+        // Fetch and display the saved responses
+        document.addEventListener("DOMContentLoaded", function () {
+            const responsesListDiv = document.getElementById('responsesList');
+            const savedResponses = JSON.parse(localStorage.getItem('savedResponses')) || [];
+
+            savedResponses.forEach(response => {
+                const responseDiv = document.createElement('div');
+                responseDiv.innerHTML = `<p>Paper ID: ${response.paperId}</p>
+                                         <p>Action: ${response.action}</p>
+                                         <p>Reviewer: ${response.reviewer || 'N/A'}</p>
+                                         <p>Deadline: ${response.deadline || 'N/A'}</p>`;
+                responseDiv.style.border = '1px solid grey';
+                responseDiv.style.padding = '10px';
+                responseDiv.style.marginBottom = '10px';
+
+                responsesListDiv.appendChild(responseDiv);
+            });
+        });
+
+        // Function to navigate back to the main page
+        function navigateBack() {
+            window.location.href = "assignreviewers.html";  // Replace with the actual filename of your main page
+        }
+    </script>
+</body>
+
+</html>
