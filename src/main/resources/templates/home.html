@@ -82,7 +82,76 @@
             background-color: #f0f0f0;
         }
 
+        /* Styles for the modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        /* Styling for reviews section */
+        .reviews-section {
+            margin-top: 20px;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+        }
+
+        .reviews {
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+
+        /* Additional styling for decision section */
+        .decision-section {
+            text-align: center;
+        }
+
+        .decision-buttons {
+            margin-top: 10px;
+        }
+
+        .decision-buttons button {
+            margin: 0 10px;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .decision-buttons button.accept {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .decision-buttons button.reject {
+            background-color: #f44336;
+            color: white;
+        }
+       
+         
+        #view-details-title-popup {
+         color: black; 
+        }
+        #view-reviews-title-popup {
+         color: black; 
+        }
         
+		#choose-decision-title-popup{
+			color: black;
+		}
+		
     </style>
 </head>
 <body>
@@ -117,6 +186,43 @@
     <footer>
         &copy; 2023 NITCONF
     </footer>
+    
+      <!-- Modal for View Details -->
+<div class="modal" id="view-details-popup">
+    <div class="modal-content" id="view-details-content">
+        <span class="close-popup" onclick="closeViewDetailsPopup()">&times;</span>
+        <h2 id="view-details-title-popup"></h2>
+        <p id="view-details-authors-popup"></p>
+        <div id="view-details-section"></div>
+    </div>
+</div>
+
+    
+   <!-- Modal for View Reviews -->
+   <div class="modal" id="view-reviews-popup">
+    <div class="modal-content" id="view-reviews-content">
+        <span class="close-popup" onclick="closeViewReviewsPopup()">&times;</span>
+        <h2 id="view-reviews-title-popup"></h2>
+        <p id="view-reviews-authors-popup"></p>
+        <div class="reviews-section" id="view-reviews-section"></div>
+    </div>
+</div>
+
+<!-- Modal for Choose Decision -->
+<div class="modal" id="choose-decision-popup">
+    <div class="modal-content" id="choose-decision-content">
+        <span class="close-popup" onclick="closeChooseDecisionPopup()">&times;</span>
+        <h2 id="choose-decision-title-popup"></h2>
+        <div class="decision-section" id="decision-section">
+            <h3>Choose Decision:</h3>
+            <div class="decision-buttons">
+                <button class="accept" onclick="submitDecision('accept')">Accept</button>
+                <button class="reject" onclick="submitDecision('reject')">Reject</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
     <script>
         // Fetch submissions data from a server or local storage
@@ -129,27 +235,78 @@
                     submissionItem.innerHTML = `
                         <h3>${submission.title}</h3>
                         <p>Authors: ${submission.authors.join(', ')}</p>
-                        <button class="view-details">View Details</button>
+                        <button class="view-details" onclick="ShowDetailsPopup('${submission.title}', '${submission.authors.join(', ')}', '${submission.details ? submission.details.abstract : 'No abstract available'}')">View Details</button>
+                        <button class="view-reviews" onclick="ShowReviewsPopup('${submission.title}', '${submission.authors.join(', ')}', '${submission.reviews.review1}', '${submission.reviews.review2}')">View Reviews</button>
+                        <button class="choose-decision" onclick="openDecisionPopup('${submission.title}')">Choose Decision</button>
                     `;
                     document.querySelector('#submissions-list ul').appendChild(submissionItem);
-
-                    // Handle "View Details" button click
-                    submissionItem.querySelector('.view-details').addEventListener('click', () => {
-                        // Show submission details section and populate its content
-                        showSubmissionDetails(submission);
-                    });
                 });
             });
+       
+       function ShowDetailsPopup(title, authors, abstract) {
+    // Display details in the view details modal
+    document.getElementById("view-details-title-popup").innerText = title;
+document.getElementById("view-details-authors-popup").innerText = authors;
 
-        function showSubmissionDetails(submission) {
-            // Display submission details in the UI
-            document.getElementById("submission-title").innerText = `Title: ${submission.title}`;
-            document.getElementById("submission-authors").innerText = `Authors: ${submission.authors.join(', ')}`;
-            // Add more details as needed
+    const viewDetailsSection = document.getElementById("view-details-section");
+    viewDetailsSection.innerHTML = `
+        <h3>Abstract</h3>
+        <p>${abstract}</p>
+    `;
+    // Show the view details modal
+    document.getElementById("view-details-popup").style.display = "flex";
+}
+        function ShowReviewsPopup(title, authors, review1, review2) {
+    // Display Reviews in the view Reviews modal
+    document.getElementById("view-reviews-title-popup").innerText = title;
+    document.getElementById("view-reviews-authors-popup").innerText =  authors;
 
-            // Show the submission details section
-            document.getElementById("submission-details").style.display = "block";
-        }
+    // Add reviews (you can fetch reviews data here)
+    const viewReviewsSection = document.getElementById("view-reviews-section");
+    viewReviewsSection.innerHTML = `
+        <h3>Reviews</h3>
+        <p>${review1}</p>
+        <p>${review2}</p>
+    `;
+
+    // Show the view reviews modal
+    document.getElementById("view-reviews-popup").style.display = "flex";
+}
+
+    function openDecisionPopup(title) {
+        // Display submission details in the choose decision modal
+        document.getElementById("choose-decision-title-popup").innerText = title;
+       
+
+        // Show the choose decision modal
+        document.getElementById("choose-decision-popup").style.display = "flex";
+    }
+
+
+         function submitDecision(decision) {
+        alert("Decision: " + decision); // Fixed the string concatenation
+        // You can add logic here to submit the decision to your server or perform further actions.
+        // For example, update the submission data with the decision.
+        // ...
+        closeChooseDecisionPopup();
+    }
+     function closeViewDetailsPopup() {
+        // Close the view details modal
+        document.getElementById("view-details-popup").style.display = "none";
+    }
+    
+    function closeViewReviewsPopup() {
+    // Close the view reviews modal
+    document.getElementById("view-reviews-popup").style.display = "none";
+}
+
+
+    function closeChooseDecisionPopup() {
+        // Close the choose decision modal
+        document.getElementById("choose-decision-popup").style.display = "none";
+    }
+    
+        
     </script>
 </body>
 </html>
