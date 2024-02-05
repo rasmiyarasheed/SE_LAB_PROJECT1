@@ -1,26 +1,88 @@
 [
     {
         "title": "Exploring Neural Networks for Image Recognition",
-        "authors": ["Emily White", "Frank Miller"]
+        "authors": ["Emily White", "Frank Miller"],
+        "details": {
+			"abstract":" The paper on Exploring Neural Networks for Image Recognition investigates and analyzes various neural network architectures, providing comprehensive insights into their applications and performance in the context of image recognition tasks."
+		},
+		
+		"ViewDetails": "View Details",
+		 "reviews": {
+            "review1": "The paper Exploring Neural Networks for Image Recognition provides a thorough and insightful examination of various neural network architectures, demonstrating a strong grasp of the subject matter and offering valuable insights for the image recognition community.",
+            "review2": "The paper is well-structured, but it would be enhanced by deeper comparative analyses between neural network architectures and addressing potential limitations for a more robust evaluation."
+        },
+        "ViewReviews": "View Reviews",
+        "choosedecision": null  
     },
     {
         "title": "Robotics and Automation in Industry 4.0",
-        "authors": ["Grace Taylor", "Henry Wilson"]
+        "authors": ["Grace Taylor", "Henry Wilson"],
+        "details": {
+			"abstract":" The paper on Robotics and Automation in Industry 4.0 explores the integration of robotics and automation within the context of Industry 4.0, analyzing their roles, challenges, and potential benefits, with a focus on advancing manufacturing processes in the fourth industrial revolution."
+		},
+		"ViewDetails": "View Details",
+		 "reviews": {
+            "review1": " The paper on Robotics and Automation in Industry 4.0 provides a comprehensive exploration of the role and applications of robotics and automation in the context of Industry 4.0, offering valuable insights into the integration of these technologies.",
+            "review2": "While the paper effectively addresses the subject matter, a more in-depth discussion on practical implementation challenges and potential solutions in the Industry 4.0 framework could enhance its practical relevance for readers."
+        },
+        "ViewReviews": "View Reviews",
+        "choosedecision": null 
     },
     {
         "title": "Ethical Considerations in Artificial Intelligence Research",
-        "authors": ["Ivy Green", "Jack Anderson"]
+        "authors": ["Ivy Green", "Jack Anderson"],
+        "details": {
+			"abstract":"The paper on Ethical Considerations in Artificial Intelligence Research critically examines ethical challenges inherent in AI research, providing insights into key issues, and proposes recommendations to guide responsible development and deployment practices in the field. "
+		},
+		"ViewDetails": "View Details",
+		 "reviews": {
+            "review1": "The paper on Ethical Considerations in Artificial Intelligence Research provides a valuable and thought-provoking analysis, significantly contributing to the discourse on ethical challenges in AI.",
+            "review2": "The paper could benefit from more explicit recommendations for responsible AI development and deployment to further strengthen its impact on guiding ethical practices in the field. "
+        },
+        "ViewReviews": "View Reviews",
+        "choosedecision": null 
     },
     {
         "title": "Data Privacy in the Age of Big Data",
-        "authors": ["Karen Moore", "Liam Johnson"]
+        "authors": ["Karen Moore", "Liam Johnson"],
+        "details": {
+			"abstract":"The paper on Data Privacy in the Age of Big Data addresses the escalating challenges to data privacy in the era of extensive data collection, examining potential risks, current regulatory frameworks, and proposing strategies to safeguard sensitive information in the context of Big Data. "
+		},
+		"ViewDetails": "View Details",
+		 "reviews": {
+            "review1": "Data Privacy in the Age of Big Data presents a comprehensive examination of data privacy challenges in the era of extensive data, contributing significantly to the understanding of associated issues.",
+            "review2": "The paper could enhance its practical impact by providing more concrete recommendations or frameworks for addressing data privacy concerns in the context of Big Data."
+        },
+        "ViewReviews": "View Reviews",
+        "choosedecision": null 
     },
     {
         "title": "Quantum Computing: A Paradigm Shift in Information Processing",
-        "authors": ["Mike Robinson", "Natalie Harris"]
+        "authors": ["Mike Robinson", "Natalie Harris"],
+        "details": {
+			"abstract":" This paper explores the revolutionary implications of quantum computing as a paradigm shift in information processing, delving into its fundamental principles, potential applications, and the transformative impact it holds for the future of computational capabilities."
+		},
+		"ViewDetails": "View Details",
+		 "reviews": {
+            "review1": "Quantum Computing: A Paradigm Shift in Information Processing offers a compelling exploration of quantum computing, providing valuable insights into its transformative potential for information processing.",
+            "review2": "The paper could further strengthen its impact by delving into potential challenges and practical applications, offering a more comprehensive understanding of the field."
+        },
+        "ViewReviews": "View Reviews",
+        "choosedecision": null 
     },
+    
     {
         "title": "The Role of Explainable AI in Decision Support Systems",
-        "authors": ["Olivia Davis", "Patrick White"]
+        "authors": ["Olivia Davis", "Patrick White"],
+        "details": {
+			"abstract":"This paper explores the pivotal role of explainable AI in decision support systems, elucidating its significance in fostering transparency, user trust, and effective decision-making processes within diverse domains."
+		},
+		"ViewDetails": "View Details",
+		 "reviews": {
+            "review1": "The Role of Explainable AI in Decision Support Systems provides a thorough analysis of the significance of explainable AI, contributing valuable insights to the field of decision support systems.",
+            "review2": "The paper could benefit from a deeper exploration of specific use cases and practical implementation strategies for explainable AI in decision-making processes, enhancing its applicability."
+        },
+        "ViewReviews": "View Reviews",
+        "choosedecision": null 
     }
 ]
