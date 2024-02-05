@@ -26,6 +26,9 @@
             color: grey;
             text-align: center;
         }
+        .button-container button {
+            margin-right: 10px;
+        }
 
         .section {
             margin-top: 20px;
@@ -40,37 +43,35 @@
             cursor: pointer;
         }
 
+        .paper-details {
+            margin-bottom: 10px;
+        }
 
         .paper-details {
             margin-bottom: 10px;
         }
 
-    .paper-details {
-      margin-bottom: 10px;
-    }
+        .dropdown {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
 
-    .dropdown {
-      width: 100%;
-      padding: 5px;
-      margin-bottom: 10px;
-    }
-    #back-button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 10px;
-    background-color: #555;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
+        #back-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px;
+            background-color: #555;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
-#back-button:hover {
-    background-color: #777;
-}
-    
-
+        #back-button:hover {
+            background-color: #777;
+        }
 
         .dropdown {
             width: 100%;
@@ -97,12 +98,11 @@
             background-color: #777;
         }
         
-
     </style>
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" data-review-limit="3">
         <h2>Assign Reviewer</h2>
         <div class="section" id="papersSection">
 
@@ -120,23 +120,21 @@
     </div>
 
     <script>
-        // Fetch paper details from submissions.json
         fetch('submissions.json')
             .then(response => response.json())
             .then(papers => {
                 const papersSection = document.getElementById('papersSection');
+                const container = document.querySelector('.container');
+                const reviewLimit = container.dataset.reviewLimit;
 
                 papers.forEach((paper, index) => {
-                    // Create a form for each paper
                     const form = document.createElement('form');
                     form.action = '/assignreviewers';
                     form.method = 'POST';
 
-                    // Create a div for paper details
                     const paperDetailsDiv = document.createElement('div');
                     paperDetailsDiv.className = 'paper-details';
 
-                    // Display Paper ID and Author details
                     const paperIdP = document.createElement('p');
                     paperIdP.textContent = `Paper ID: ${index + 1}`;
                     paperDetailsDiv.appendChild(paperIdP);
@@ -149,7 +147,6 @@
                     authorP.textContent = `Authors: ${paper.authors.join(', ')}`;
                     paperDetailsDiv.appendChild(authorP);
 
-                    // Create a label and dropdown for selecting a reviewer
                     const label = document.createElement('label');
                     label.for = `reviewer${index + 1}`;
                     label.className = 'dropdown';
@@ -159,9 +156,7 @@
                     const dropdown = document.createElement('select');
                     dropdown.id = `reviewer${index + 1}`;
                     dropdown.className = 'dropdown';
-                    // Reviewer options will be dynamically added here
 
-                    // Fetch reviewer names from reviewers.json
                     fetch('reviewers.json')
                         .then(response => response.json())
                         .then(reviewers => {
@@ -176,21 +171,26 @@
 
                     paperDetailsDiv.appendChild(dropdown);
 
-                    // Create buttons for assigning a reviewer and setting a deadline
                     const assignButton = document.createElement('button');
                     assignButton.type = 'button';
                     assignButton.className = 'button';
                     assignButton.textContent = 'Assign Reviewer';
                     assignButton.onclick = () => {
                         const selectedReviewer = document.getElementById(`reviewer${index + 1}`).value;
-                        saveResponse({
-                            paperId: index + 1,
-                            action: 'Assign Reviewer',
-                            reviewer: selectedReviewer
-                        });
-                        alert(`Reviewer ${selectedReviewer} assigned for Paper ID: ${index + 1}`);
-                        // Implement additional logic if needed
+
+                        if (hasReachedReviewLimit(selectedReviewer, reviewLimit)) {
+                            alert(`Reviewer ${selectedReviewer} has reached the review limit.`);
+                        } else {
+                            saveResponse({
+                                paperId: index + 1,
+                                action: 'Assign Reviewer',
+                                reviewer: selectedReviewer
+                            });
+                            alert(`Reviewer ${selectedReviewer} assigned for Paper ID: ${index + 1}`);
+                            // Implement additional logic if needed
+                        }
                     };
+
                     paperDetailsDiv.appendChild(assignButton);
 
                     const buttonSpacer = document.createElement('span');
@@ -221,36 +221,46 @@
                     };
                     paperDetailsDiv.appendChild(deadlineButton);
 
-                    // Append the paper details div to the form
                     form.appendChild(paperDetailsDiv);
-
-                    // Append the form to the papersSection
                     papersSection.appendChild(form);
                 });
             })
             .catch(error => console.error('Error fetching paper details:', error));
 
         function saveResponse(response) {
-            // Retrieve existing responses from localStorage
             const savedResponses = JSON.parse(localStorage.getItem('savedResponses')) || [];
-
-            // Add the new response to the array
             savedResponses.push(response);
-
-            // Save the updated array back to localStorage
             localStorage.setItem('savedResponses', JSON.stringify(savedResponses));
-
             alert('Response saved successfully.');
         }
+
+        function hasReachedReviewLimit(reviewer, limit) {
+            const savedResponses = JSON.parse(localStorage.getItem('savedResponses')) || [];
+            const reviewerReviews = savedResponses.filter(response => response.reviewer === reviewer);
+            return reviewerReviews.length >= limit;
+        }
+
         function navigateToResponsesPage() {
-        window.location.href = "responses";
-         }
-         
+            window.location.href = "responses";
+        }
+        
+        function clearSavedResponses() {
+            if (confirm('Are you sure you want to clear all saved responses?')) {
+                localStorage.removeItem('savedResponses');
+                alert('Saved responses cleared successfully.');
+            }
+        }
     </script>
-    <button onclick="navigateToResponsesPage()">View Responses</button>
+    <div style="margin-top: 10px;">
     
+    <button style="margin-right: 10px;" onclick="clearSavedResponses()">Clear Saved Responses</button>
+
+
+    <button style="margin-right: 10px;" onclick="navigateToResponsesPage()">View Responses</button>
+
     <button id="back-button">Back</button>
-    
+    </div>
+
 </body>
 
 </html>
