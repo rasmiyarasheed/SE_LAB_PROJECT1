@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8" />
     
-     <style>
-        
+    <style>
         body {
             font-family: sans-serif;
             margin: 0;
             padding: 20px;
             background-image: url("https://t3.ftcdn.net/jpg/02/76/99/22/240_F_276992286_z5JBDiYuwb9J83F2qnGaJAEeY4ybjDqY.jpg");
+            color: white;
         }
 
         header {
@@ -19,23 +19,15 @@
             text-align: center;
             color: white;
         }
-        
-        h1 {
-            
-            color: white;
-            
-        }
-        
-        h2{
-			color:white;
-			text-align: center;
-			
-		}
-		
-		footer {
-    	color: white; /* Replace #00ff00 with your desired color code */
-		}
 
+        h1, h2 {
+            color: white;
+            text-align: center;
+        }
+
+        footer {
+            color: white;
+        }
 
         nav {
             display: flex;
@@ -56,63 +48,88 @@
             background-color: #777;
         }
 
-        
+        main {
+            padding: 20px;
+        }
 
-        
+        #rejected-papers-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        #rejected-papers-list li {
+            background-color: #555;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: calc(33.33% - 20px);
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #rejected-papers-list li:hover {
+            transform: scale(1.05);
+        }
+
+        #back-button {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            background-color: #555;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+        }
     </style>
-
 
     <title>Rejected Papers</title>
 </head>
 
 <body>
 
-     <header>
+    <header>
         <div class="custom-header">
-            <h1 >Programming Committee</h1>
+            <h1>Programming Committee</h1>
         </div>
-     </header>
-     <nav>
-       <a href="/dashboard">Home</a>
+    </header>
+
+    <nav>
+        <a href="/dashboard">Home</a>
         <a href="/reviewers">Reviewers</a>
         <a href="/home">Reviewed Papers</a>
         <a href="/assignreviewers">Unreviewed Papers</a>
         <a href="/accepted">Accepted Papers</a>
         <a href="/rejectedpapers">Rejected Papers</a>
     </nav>
+
     <main>
-    <h2>Rejected Papers</h2>
+        <h1>Rejected Papers</h1>
+        <ul id="rejected-papers-list"></ul>
 
-    <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
-        <!-- Reviewer 1 -->
-        <div style="width: 300px; padding: 20px; margin: 10px; background-color: #555; color: white; text-align: center; border-radius: 10px;">
-            <h3>Reviewed by:</h3>
-            <p>Title</p>
-            <p>About</p>
-            <p>Author</p>
-            
-        </div>
+        <script>
+            const rejectedPapersList = document.getElementById("rejected-papers-list");
 
-        <!-- Reviewer 2 -->
-        <div style="width: 300px; padding: 20px; margin: 10px; background-color: #555; color: white; text-align: center; border-radius: 10px;">
-            <h3>Reviewed by:</h3>
-            <p>Title</p>
-            <p>About</p>
-            <p>Author</p>
-        </div>
-        
-        <div style="width: 300px; padding: 20px; margin: 10px; background-color: #555; color: white; text-align: center; border-radius: 10px;">
-            <h3>Reviewed by:</h3>
-            <p>Title</p>
-            <p>About</p>
-            <p>Author</p>
-        </div>
+            // Loop through localStorage to find rejected papers
+            for (let i = 0; i < localStorage.length; i++) {
+                const title = localStorage.key(i);
+                const decision = localStorage.getItem(title);
 
-        <!-- Add more reviewer boxes as needed -->
-
-    </div>
-</main>
-
+                if (decision === 'reject') {
+                    const paperItem = document.createElement('li');
+                    paperItem.textContent = title;
+                    rejectedPapersList.appendChild(paperItem);
+                }
+            }
+        </script>
+    </main>
 
 </body>
 

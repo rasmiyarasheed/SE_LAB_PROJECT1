@@ -1,18 +1,29 @@
 package com.example.demo;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SpringBootApplication
-@ComponentScan(basePackages = "com.example.demo.controller")
 public class SeLabProjectApplication {
+
     public static void main(String[] args) {
         SpringApplication.run(SeLabProjectApplication.class, args);
     }
-<<<<<<< HEAD
-}
-=======
 
     @Controller
     public static class HomeController {
@@ -161,4 +172,3 @@ public class SeLabProjectApplication {
         // Getters and setters
     
 
->>>>>>> 51d0948e21ca89a0fca350ddf8b0429e6a98a67d

@@ -5,11 +5,12 @@
     <meta charset="UTF-8" />
     
     <style>
-        body {
+		body {
             font-family: sans-serif;
             margin: 0;
             padding: 20px;
             background-image: url("https://t3.ftcdn.net/jpg/02/76/99/22/240_F_276992286_z5JBDiYuwb9J83F2qnGaJAEeY4ybjDqY.jpg");
+            color: white;
         }
 
         header {
@@ -21,6 +22,7 @@
 
         h1 {
             color: white;
+            text-align: center;
         }
 
         h2 {
@@ -50,7 +52,41 @@
         nav a:hover {
             background-color: #777;
         }
-    </style>
+
+        main {
+            padding: 20px;
+        }
+
+        #accepted-papers-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        #accepted-papers-list li {
+            background-color: #555;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            width: calc(33.33% - 20px); /* Adjust the width based on your preference */
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        #back-button {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            background-color: #555;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+        }
+            </style>
 
     <title>Accepted Papers</title>
 </head>
@@ -71,35 +107,25 @@
         <a href="/rejectedpapers">Rejected Papers</a>
     </nav>
     <main>
-        <h2>Accepted Papers</h2>
+        <h1>Accepted Papers</h1>
 
-        <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
-            <!-- Reviewer 1 -->
-            <div style="width: 300px; padding: 20px; margin: 10px; background-color: #555; color: white; text-align: center; border-radius: 10px;">
-                <h3>Reviewed by:</h3>
-                <p>Title</p>
-                <p>About</p>
-                <p>Author</p>
-            </div>
+    <ul id="accepted-papers-list"></ul>
 
-            <!-- Reviewer 2 -->
-            <div style="width: 300px; padding: 20px; margin: 10px; background-color: #555; color: white; text-align: center; border-radius: 10px;">
-                <h3>Reviewed by:</h3>
-                <p>Title</p>
-                <p>About</p>
-                <p>Author</p>
-            </div>
+    <script>
+        const acceptedPapersList = document.getElementById("accepted-papers-list");
 
-            <div style="width: 300px; padding: 20px; margin: 10px; background-color: #555; color: white; text-align: center; border-radius: 10px;">
-                <h3>Reviewed by:</h3>
-                <p>Title</p>
-                <p>About</p>
-                <p>Author</p>
-            </div>
+        // Loop through localStorage to find accepted papers
+        for (let i = 0; i < localStorage.length; i++) {
+            const title = localStorage.key(i);
+            const decision = localStorage.getItem(title);
 
-            <!-- Add more reviewer boxes as needed -->
-
-        </div>
+            if (decision === 'accept') {
+                const paperItem = document.createElement('li');
+                paperItem.textContent = title;
+                acceptedPapersList.appendChild(paperItem);
+            }
+        }
+    </script>
     </main>
 
     <!-- Back button in the bottom-left corner -->
