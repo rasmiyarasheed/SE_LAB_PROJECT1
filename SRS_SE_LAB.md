@@ -70,6 +70,27 @@ This SRS document is intended for a diverse audience of stakeholders involved in
 The NITCONF Submission and Evaluation System (NSES) is a web-based platform specifically designed to facilitate the submission and evaluation of papers for the NITCONF conference. The system offers a user-friendly interface with distinct functionalities for speakers, designated reviewers, and members of the Program Committee, ensuring a seamless and efficient process. 
 
 
+- **User Registration:** 
+- Participants, including speakers, reviewers, and Program Committee members, can securely register to create their accounts within the system. 
+- **User Login:** 
+- Registered users can log in to access the platform's features, ensuring a personalized and secure experience. 
+- **Paper Submission:** 
+- Speakers can utilize a dedicated "Submit Abstract" button to initiate the paper submission process, accessing a secure login site. 
+- **Reviewer Portal:** 
+
+`                  `Designated reviewers can log in to the system to access papers assigned for review,                                                                                         providing detailed comments and assigning a ranking on a predefined scale.
+
+`                `Set deadlines for    reviewers to submit their evaluations. 
+
+**Program Committee Decision-Making:** 
+
+- Members of the Program Committee can log in to a dedicated portal to collectively review comments and make informed decisions on paper acceptance or rejection, 
+
+  shaping the conference program. 
+
+- **Paper Status Tracking:** 
+- Participants, including speakers and reviewers, can track the status of their submissions within the system. 
+
 
 
 
