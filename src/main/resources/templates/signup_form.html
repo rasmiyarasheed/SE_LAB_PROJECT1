@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title> Registration - Program committee </title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+
+       <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url("https://i.pinimg.com/736x/09/1d/4f/091d4f1bebc76ea61eec0b9d8af26e5f.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 100vh; /* Ensure the body takes up the full height of the viewport */
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Center content vertically */
+      justify-content: center; 
+    }
+    .form-container {
+      width: 300px;
+      padding: 30px;
+      border: 1px solid #ccc;
+      margin: 50px auto;
+      border-radius: 10px;
+      
+    }
+    .form-title {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    .form-input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .form-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+
+
+
+</head>
+<body>
+    <div class="container text-center">
+        <div>
+            <h1>User Registration - Sign Up</h1>
+        </div>
+        <form th:action="@{/process_register}"  method="post"
+           style="max-width: 600px; margin: 0 auto;"
+            th:object="${user}"
+            >
+        <div class="m-3">
+            <div class="form-group row">
+                <label class="col-4 col-form-label">E-mail: </label>
+                <div class="col-8">
+                    <input type="email" th:field="*{email}" class="form-control" required />
+                </div>
+            </div>
+             
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Password: </label>
+                <div class="col-8">
+                    <input type="password" th:field="*{password}" class="form-control"
+                            required minlength="6" maxlength="10"/>
+                </div>
+            </div>
+             
+            <div class="form-group row">
+                <label class="col-4 col-form-label">First Name: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{firstName}" class="form-control"
+                            required minlength="2" maxlength="20"/>
+                </div>
+            </div>
+             
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Last Name: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{lastName}" class="form-control"
+                            required minlength="2" maxlength="20" />
+                </div>
+            </div>
+             
+            <div>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+            </div>
+        </div>
+        </form>
+    </div>
+     
+</body>
+</html> 
