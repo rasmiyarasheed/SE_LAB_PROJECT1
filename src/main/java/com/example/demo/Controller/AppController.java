@@ -84,7 +84,10 @@ public class AppController {
     public String rejectedpapers() {
         return "rejectedpapers";
     }
-
+    @GetMapping("/decisions")
+    public String decisions() {
+        return "decisions";
+    }
 	//viewUsersList(Model model): Handles the GET request for viewing the list of users.
 	@GetMapping("/list_users")
 	public String viewUsersList(Model model)
