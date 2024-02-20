@@ -1,0 +1,203 @@
+openapi: 3.0.0
+info:
+  title: Conference Management System
+  version: 1.0.0
+  description: |
+    This OpenAPI document describes the endpoints for a Conference Management System.
+    It includes user authentication, login, registration, and various conference-related operations.
+servers:
+  - url: http://localhost:8080
+    description: Local Development Server
+paths:
+  /:
+    get:
+      summary: Homepage
+      description: Retrieve the homepage.
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            text/html:
+              example: "Welcome to the Conference Management System!"
+
+  /login:
+    post:
+      summary: User Login
+      description: Authenticate a user based on provided credentials.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: User's username.
+                password:
+                  type: string
+                  format: password
+                  description: User's password.
+              required:
+                - username
+                - password
+      responses:
+        '302':
+          description: Redirect on successful login.
+          headers:
+            Location:
+              schema:
+                type: string
+                description: Redirect URL.
+  /listofusers:
+    get:
+      summary: List of users
+      description: List of users
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            text/html:
+              example: "View the list of users."
+
+  
+  /reviewers:
+    get:
+      summary: Reviewers Page
+      description: Retrieve the reviewers page.
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            text/html:
+              example: "View the list of reviewers."
+
+  /accepted:
+    get:
+      summary: Accepted Papers Page
+      description: Retrieve the page with accepted papers.
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            text/html:
+              example: "View the list of accepted papers."
+
+  /responses:
+    get:
+      summary: Responses Page
+      description: Retrieve the responses page.
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            text/html:
+              example: "View responses from participants."
+
+  /dashboard:
+    get:
+      summary: Dashboard Page
+      description: Retrieve the dashboard page.
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            text/html:
+              example: "Conference Management Dashboard."
+
+  /assignreviewers:
+    get:
+      summary: Assign Reviewers Page
+      description: Retrieve the page to assign reviewers.
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            text/html:
+              example: "Assign reviewers to papers."
+
+  /rejectedpapers:
+    get:
+      summary: Rejected Papers Page
+      description: Retrieve the page with rejected papers.
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            text/html:
+              example: "View the list of rejected papers."
+
+  /decisions:
+    get:
+      summary: Decisions Page
+      description: Retrieve the decisions page.
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            text/html:
+              example: "View decisions made during the conference."
+
+  /register:
+    get:
+      summary: Registration Page
+      description: Retrieve the registration page.
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            text/html:
+              example: "User registration form."
+    post:
+      summary: User Registration
+      description: Submit user registration form.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UserRegistrationForm'
+      responses:
+        '302':
+          description: Redirect on successful registration.
+          headers:
+            Location:
+              schema:
+                type: string
+                description: Redirect URL.
+
+components:
+  schemas:
+    UserRegistrationForm:
+      type: object
+      properties:
+        username:
+          type: string
+          description: User's desired username.
+        password:
+          type: string
+          format: password
+          description: User's password.
+        email:
+          type: string
+          format: email
+          description: User's email address.
+      required:
+        - username
+        - password
+        - email
+    revieverAssigningForm:
+      type: object
+      properties:
+        name:
+          type: string
+          description: reviewer Name
+        deadline:
+          type: integer
+          format: date
+          description: deadline for reviewing
+       
+      required:
+        - name
+        - deadline
+      
