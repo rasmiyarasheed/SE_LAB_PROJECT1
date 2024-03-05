@@ -223,37 +223,36 @@
     </div>
 
     <script>
-        fetch('./submissions.json')
+        fetch('/api/submissions')
             .then(response => response.json())
             .then(submissions => {
                 submissions.forEach(submission => {
                     const submissionItem = document.createElement('li');
                     submissionItem.innerHTML = `
                         <h3>${submission.title}</h3>
-                        <p>Authors: ${submission.authors.join(', ')}</p>
-                        <button class="view-details" onclick="ShowDetailsPopup('${submission.title}', '${submission.authors.join(', ')}', '${submission.details ? submission.details.abstract : 'No abstract available'}')">View Details</button>
-                        <button class="view-reviews" onclick="ShowReviewsPopup('${submission.title}', '${submission.authors.join(', ')}', '${submission.reviews.review1}', '${submission.reviews.review2}')">View Reviews</button>
+                        <p>Authors: ${submission.author1}, ${submission.author2}</p>
+                        <button class="view-details" onclick="ShowDetailsPopup('${submission.title}', '${submission.author1}', '${submission.author2}', '${submission.abstractText}')">View Details</button>
+                        <button class="view-reviews" onclick="ShowReviewsPopup('${submission.title}', '${submission.review1}', '${submission.review2}')">View Reviews</button>
                         <button class="choose-decision" onclick="openDecisionPopup('${submission.title}')">Choose Decision</button>
                     `;
                     document.querySelector('#submissions-list ul').appendChild(submissionItem);
                 });
             });
 
-        function ShowDetailsPopup(title, authors, abstract) {
+        function ShowDetailsPopup(title, author1, author2, abstractText) {
             document.getElementById("view-details-title-popup").innerText = title;
-            document.getElementById("view-details-authors-popup").innerText = authors;
+            document.getElementById("view-details-authors-popup").innerText = `Authors: ${author1}, ${author2}`;
 
             const viewDetailsSection = document.getElementById("view-details-section");
             viewDetailsSection.innerHTML = `
                 <h3>Abstract</h3>
-                <p>${abstract}</p>
+                <p>${abstractText}</p>
             `;
             document.getElementById("view-details-popup").style.display = "flex";
         }
 
-        function ShowReviewsPopup(title, authors, review1, review2) {
+        function ShowReviewsPopup(title, review1, review2) {
             document.getElementById("view-reviews-title-popup").innerText = title;
-            document.getElementById("view-reviews-authors-popup").innerText = authors;
 
             const viewReviewsSection = document.getElementById("view-reviews-section");
             viewReviewsSection.innerHTML = `
@@ -264,7 +263,6 @@
 
             document.getElementById("view-reviews-popup").style.display = "flex";
         }
-
         function openDecisionPopup(title) {
             document.getElementById("choose-decision-title-popup").innerText = title;
             document.getElementById("choose-decision-popup").style.display = "flex";

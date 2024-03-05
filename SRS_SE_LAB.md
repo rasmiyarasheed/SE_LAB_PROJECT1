@@ -69,11 +69,6 @@ This SRS document is intended for a diverse audience of stakeholders involved in
 
 The NITCONF Submission and Evaluation System (NSES) is a web-based platform specifically designed to facilitate the submission and evaluation of papers for the NITCONF conference. The system offers a user-friendly interface with distinct functionalities for speakers, designated reviewers, and members of the Program Committee, ensuring a seamless and efficient process. 
 
-![ref1]
-
-![](Aspose.Words.447b504a-902d-41a1-9532-bf96f8a3b898.005.png)
-
-**Product Functionality ![ref1]**
 
 - **User Registration:** 
 - Participants, including speakers, reviewers, and Program Committee members, can securely register to create their accounts within the system. 
@@ -96,9 +91,9 @@ The NITCONF Submission and Evaluation System (NSES) is a web-based platform spec
 - **Paper Status Tracking:** 
 - Participants, including speakers and reviewers, can track the status of their submissions within the system. 
 
-  **Notification System:** 
 
-- Automated notifications will be sent to speakers following Program Committee decisions, ensuring timely communication of acceptance or rejection. 
+
+
 
 **3 Specific Requirements ![](Aspose.Words.447b504a-902d-41a1-9532-bf96f8a3b898.006.png)**
 
@@ -150,39 +145,46 @@ HTML, CSS, JS  Used in the development of the front-end of the application.
 
 `  `**Functional Requirements** 
 
-1. **Registration and Login:** User Registration: 
-
-   Users should be able to create accounts with different roles such as Author, Reviewer, and Program Committee Member. 
-
-Login: 
-
-Authentication for all users. 
-
-2. **Reviewing System:** Paper Assignment: 
-
-`  `Automatically assign submitted papers to reviewers based on their expertise. 
-
-`  `Reviewing Dashboard: 
-
-Reviewers should have a dashboard displaying assigned papers and evaluation criteria. Ability to provide comments and scores for each paper. 
-
-Review Deadline: ![ref1]
-
-Set deadlines for reviewers to submit their evaluations. 
-
-3. **Program Committee Dashboard:** Review Comments: 
-
-`   `Display all review comments for each paper. 
-
-Decision-making Tools: 
-
-Interface to mark decisions (Accept or Reject) for each paper. 
-
-4. **Notification System:** Automated Notifications: 
-
-   Automated notifications to authors about paper submission confirmation. Notifications to reviewers about assigned papers. 
-
-Notifications to authors about the decision (acceptance or rejection). 
+- **User Registration:** 
+- Program Committee members can securely register to create their accounts within the system.
+- New user should be able to create accounts by giving valid credentials
+- 
+- **User Login:** 
+- Registered users can log in to vaild username and password to access the platform's features, ensuring a personalized and secure experience.
+- 
+- **Dashboard**
+- In dashboard the person can access all the platform features through the navbar.
+- The navbar contain Home,Reviews,Reviewed papers,Unreviewed papers,Accepted papers and Rejected papers buttons.
+- so that the person can access all the features easly.
+- 
+-  **Reviews**
+-  The reviews will contain all the reviews details.
+-  That contain their name, field, contact and email also.
+-  
+-  **Reviewed papers**
+-  The reviewed papers we can see all the reviewed papers.
+-  This contain the all details like the paper title and the authors name .
+-  And also it contain 3 popup windows View Details,View Reviews and Choose Decision.
+-  View Details : This will contain title ,authors name and a the abstract of the paper.
+-  View Reviews : This will contain title,authors name and Reviews of the paper.
+-  Choose decision: This  will also contain title ,authors name and choose the decision toggle button.
+-  In this we can accept or reject the papers.
+-  
+-  **Unreviewed Papers**
+-  The unreviewed papers we can see all the unreviewed papers.
+-  Assign Reviewer: The unreviewed papers  will assign each of the reviewr.
+-  In there we can select Reviewer to that papers.
+- We fix a limit that Each reviewer can review only 3 papers.
+- if we assign more than 3 papers to a reviewer it show that reviewer has reached the review limit.
+- so we can assign the paper to another reviewer.
+- Set Deadline: In this also set the deadline for reviewers to review the papers.
+- 
+- **Accepted papers**
+- It will shown  all accepted papers.
+- 
+- **Rejected Papers**
+- It will shown all the rejected papers.
+- 
 
 `  `**Use Case Model** 
 

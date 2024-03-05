@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 
 import com.example.demo.model.Reviewer;
-
+import com.example.demo.model.Submissions;
 import com.example.demo.repository.ReviewerRepository;
+import com.example.demo.repository.SubmissionsRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -157,6 +158,18 @@ public class HomeController {
             System.out.println("Serialized JSON: " + json);  // Print the serialized JSON to console
 
             return reviewers;
+        }
+        @RestController
+        @RequestMapping("/api/submissions")
+        public class SubmissionController {
+
+            @Autowired
+            private SubmissionsRepository submissionsRepository;
+
+            @GetMapping
+            public List<Submissions> getAllSubmissions() {
+                return submissionsRepository.findAll();
+            }
         }
     }
     

@@ -120,7 +120,7 @@
     </div>
 
     <script>
-        fetch('submissions.json')
+        fetch('/api/submissions')
             .then(response => response.json())
             .then(papers => {
                 const papersSection = document.getElementById('papersSection');
@@ -144,7 +144,7 @@
                     paperDetailsDiv.appendChild(titleP);
 
                     const authorP = document.createElement('p');
-                    authorP.textContent = `Authors: ${paper.authors.join(', ')}`;
+                    authorP.textContent = `Authors: ${paper.author1}, ${paper.author2}`;
                     paperDetailsDiv.appendChild(authorP);
 
                     const label = document.createElement('label');
@@ -157,13 +157,13 @@
                     dropdown.id = `reviewer${index + 1}`;
                     dropdown.className = 'dropdown';
 
-                    fetch('reviewers.json')
+                    fetch('/api/reviewers')
                         .then(response => response.json())
                         .then(reviewers => {
                             reviewers.forEach(reviewer => {
                                 const option = document.createElement('option');
-                                option.value = reviewer.Name;
-                                option.textContent = reviewer.Name;
+                                option.value = reviewer.name1;
+                                option.textContent = reviewer.name1;
                                 dropdown.appendChild(option.cloneNode(true));
                             });
                         })
