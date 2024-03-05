@@ -87,7 +87,7 @@
 
         <script>
             // Fetch data from reviewers.json using Fetch API
-            fetch('reviewers.json')
+            fetch('/api/reviewers')
                 .then(response => response.json())
                 .then(reviewers => {
                     const reviewersContainer = document.getElementById('reviewers-container');
@@ -104,11 +104,11 @@
                         reviewerDiv.style.borderRadius = '10px';
 
                         reviewerDiv.innerHTML = `
-                            <h3>${reviewer.Name}</h3>
-                            <p>Name: ${reviewer.Name}</p>
-                            <p>Field: ${reviewer['Field of Expertise']}</p>
-                            <p>Contact: ${reviewer.Contact}</p>
-                            <p>Email: ${reviewer.Email}</p>
+                            <h3>${reviewer.name1}</h3>
+                            <p>Name: ${reviewer.name1}</p>
+                            <p>Field: ${reviewer.expertise_field}</p>
+                            <p>Contact: ${reviewer.contact}</p>
+                            
                         `;
 
                         reviewersContainer.appendChild(reviewerDiv);

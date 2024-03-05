@@ -1,4 +1,4 @@
-package com.example.demo.Controller;
+package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -6,6 +6,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+
+import com.example.demo.model.Reviewer;
+
+import com.example.demo.repository.ReviewerRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
@@ -13,6 +19,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -90,12 +97,18 @@ public class HomeController {
     public String rejectedpapers() {
         return "rejectedpapers"; // Assumes you have a "home.html" file in the templates directory
     }
+    
+    @GetMapping("/decisions")
+    public String decisions() {
+        return "decisions"; // Assumes you have a "home.html" file in the templates directory
+    }
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User()); // Assuming you have a User class for registration data
         return "register";
     }
+    
 
     @PostMapping("/register")
     public String register(@ModelAttribute User user, BindingResult bindingResult) {
@@ -111,4 +124,41 @@ public class HomeController {
 
         return "redirect:/"; // Redirect to the login page after a successful registration
     }
+    @RestController
+    @RequestMapping("/api/reviewers")
+    public class ReviewerController {
+
+        @Autowired
+        private ReviewerRepository reviewerRepository;
+
+        @GetMapping
+        public List<Reviewer> getAllReviewers() {
+            List<Reviewer> reviewers = reviewerRepository.findAll();
+            System.out.println("Number of reviewers: " + reviewers.size());
+
+            // Additional logging for debugging
+            if (!reviewers.isEmpty()) {
+                for (Reviewer reviewer : reviewers) {
+                    System.out.println("Reviewer details: " + reviewer.toString());
+                }
+            } else {
+                System.out.println("Reviewer list is empty.");
+            }
+
+            // Add the code for manual serialization and logging here
+            ObjectMapper mapper = new ObjectMapper();  // Create an ObjectMapper instance
+            String json = null;
+			try {
+				json = mapper.writeValueAsString(reviewers);
+			} catch (JsonProcessingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}  // Serialize the list to JSON
+            System.out.println("Serialized JSON: " + json);  // Print the serialized JSON to console
+
+            return reviewers;
+        }
+    }
+    
+    
 }
