@@ -6,10 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 
-
-
-
 @SpringBootApplication
+
 public class SeLabProjectApplication {
 
     public static void main(String[] args) {
@@ -17,4 +15,8 @@ public class SeLabProjectApplication {
     }
 
 
+
 }
+
+}
+
