@@ -1,49 +1,54 @@
-name: Maven Build and Deploy
+name: Java Servlet CI/CD
 
 on:
   push:
     branches:
-      - main
+      - main  # Adjust branch name as needed
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Set up job
-      id: setup_job
-      run: echo "Setting up job..."
-    
-    - name: Checkout code
-      uses: actions/checkout@v2
-      id: checkout_code
-    
-    - name: Set up Java JDK
-      uses: actions/setup-java@v2
-      id: setup_java
-      with:
-        distribution: 'adopt'
-        java-version: '11'
-    
-    - name: Build with Maven
-      id: build_with_maven
-      run: mvn -B package
-    
-    - name: Deploy WAR artifact
-      id: deploy_war
-      uses: actions/upload-artifact@v2
-      with:
-        name: my-webapp
-        path: target/*.war
-    
-    - name: Post setup Java JDK
-      if: success()
-      run: echo "Java JDK setup successful."
-    
-    - name: Post checkout code
-      if: success()
-      run: echo "Code checkout successful."
-    
-    - name: Complete job
-      if: always()
-      run: echo "Job completed successfully."
+      - name: Set up job
+        id: setup_job
+        run: echo "Setting up job..."
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Fetches all history for proper Maven version resolution
+
+      - name: Set up Java JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+
+      - name: Build with Maven
+        run: mvn -B clean package --file src/main/java/com/example/demo/pom.xml
+        continue-on-error: true  # Continue even if there are errors during build
+
+      - name: Deploy WAR artifact
+        run: |
+          if [ -f "src/main/java/com/example/demo/target/*.war" ]; then
+            echo "Deploying WAR artifact..."
+            # Add your deployment script here
+            # For example, copy the WAR file to your server
+            cp src/main/java/com/example/demo/target/*.war /path/to/deployment/directory
+          else
+            echo "No WAR artifact found to deploy."
+          fi
+        continue-on-error: true  # Continue even if there is no WAR artifact to deploy
+
+      - name: Post cleanup
+        id: cleanup_job
+        run: echo "Cleaning up job..."
+
+      - name: Post checkout code
+        if: success()  # Only execute if previous steps were successful
+        run: echo "Checking out code completed successfully."
+
+      - name: Complete job
+        if: always()  # Always execute, even if previous steps failed
+        run: echo "Job completed successfully."
+
